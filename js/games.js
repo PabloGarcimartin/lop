@@ -147,10 +147,10 @@ function playAave(){
     if( collision == 2 ){
       character.vx = 0;
       character.vy = 0;
-      const { value: ipAddress } =  swal.fire({
+      const { value: amount } =  swal({
         title: 'Yeah you won!',
         input: 'Wanna try playing Aave for real? Let´s invest...',
-        inputValue: inputValue,
+        inputValue: '',
         showCancelButton: true,
         inputValidator: (value) => {
           if (!value) {
