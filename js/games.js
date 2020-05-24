@@ -144,32 +144,31 @@ function playAave(){
 
     let collision = map.collision[ mapY * map.width + mapX ];
 
-    if( collision == 2 ){
+    if( collision == 2 && win === 0 ){
+      win = 1;
       character.vx = 0;
       character.vy = 0;
-      const { value: amount } =  swal({
+
+      Swal.fire({
         title: 'Yeah you won!',
-        input: 'Wanna try playing Aave for real? Let´s invest...',
-        inputValue: '',
+        text: "Wanna try playing Aave for real? Let´s invest...",
+        input: 'number',
+        inputValue: 0,
         showCancelButton: true,
         inputValidator: (value) => {
           if (!value) {
             location.reload();
             return 'You need to write something!'
           } else {
+            let account = $('#account').html();
             console.log('YOU WILL INVEST');
             console.log(value);
+            console.log('ACCOUNT');
+            console.log(account);
+            deposit(value, account);
           }
         }
       });
-      // swal({
-      //     title: "Yeah you won!",
-      //     text: "Wanna try playing Aave for real?",
-      //     icon: '../img/flavUp.png'
-      // }).then(function() {
-      //     console.log('YEEEAH');
-      //     location.reload();
-      // });
     } else {
       return collision;
     }
@@ -190,10 +189,10 @@ function playAave(){
 
     if(loseGame === 1){
       lose = 1;
-      swal({
+      Swal.fire({
         title: "GAME OVER",
         text: "Wanna give it another try?",
-        icon: '../img/flav.png',
+        html : '<img src="../img/flav.png"></img>',
         buttons: true,
         dangerMode: true,
       })

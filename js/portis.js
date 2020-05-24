@@ -27,6 +27,7 @@ portis.onLogout(() => {
 document.getElementById("login").onclick = () => {
   let acc = portis.showPortis();
   console.log(acc);
+  $('#account').html="acc";
 }
 document.getElementById("logout").onclick = () => {
   portis.isLoggedIn().then(({ error, result }) => {
